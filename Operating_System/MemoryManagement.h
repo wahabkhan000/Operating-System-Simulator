@@ -1,3 +1,9 @@
+#ifndef MemoryManagement_H
+#define MemoryManagement_H
+
+#include <utility>
+#include <string>
+
 class MemoryManagement{
     class Memory_Management_Unit{
         int Process_Size{-1};
@@ -75,3 +81,5 @@ class MemoryManagement{
 
     };
 };
+
+#endif
