@@ -1,5 +1,6 @@
 #include "CPU_Management.h"
 #include <string>
+#include <utility>
 
 
 void CPU_Management::CPU::set_cpu_status(const std::string &status){
