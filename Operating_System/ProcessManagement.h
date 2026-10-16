@@ -1,3 +1,9 @@
+#ifndef ProcessManagement_H
+#define ProcessManagement_H
+
+#include <utility>
+#include <string>
+
 class Process_Manager{
     class Static_Information{
         int PID{-1};
@@ -87,3 +93,5 @@ class Process_Manager{
     int get_number_of_process() const;
 
 };
+
+#endif
