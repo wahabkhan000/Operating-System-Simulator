@@ -1,5 +1,6 @@
 #include "MemoryManagement.h"
 #include <string>
+#include <utility>
 
 void MemoryManagement::Memory_Management_Unit::set_process_size(const int &size){
     Process_Size = size;
