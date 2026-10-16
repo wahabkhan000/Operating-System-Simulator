@@ -1,3 +1,9 @@
+#ifndef CPU_Management_H
+#define CPU_Management_H
+
+#include <utility>
+#include <string>
+
 class CPU_Management{
     class Node{
         public:
@@ -62,3 +68,4 @@ class CPU_Management{
     };
 
 };
+#endif
