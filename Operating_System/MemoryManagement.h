@@ -73,6 +73,7 @@ class Physical_Memory{
     void set_ram_size();
     void set_frame_size();
     void set_number_of_frames();
+    void set_page_size();
 
     int get_ram_size() const;
     int get_frame_size() const;
@@ -84,7 +85,7 @@ class Physical_Memory{
 class MemoryManagement{
     public:
     Memory_Management_Unit MMU;
-    Physical_Memory Main_Memeory;
+    Physical_Memory Main_Memory;
     Frame_Information frame_information{};
     Frame_Manager *Frame = nullptr;
 };
