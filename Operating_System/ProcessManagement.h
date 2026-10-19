@@ -76,7 +76,7 @@ class Page_Table{
     int Process_Size{-1};
 
     public:
-    Page_Table_Entries *page_table_entries = nullptr;
+    Page_Table_Entries *page_table_entries{};
     void set_number_of_page(const int &);
     void set_page_size(const int &);
     void set_process_size(const int &);
@@ -86,13 +86,17 @@ class Page_Table{
     int get_process_size() const;
 };
 
+class Individual_Information{
+    public:
+    Static_Information Information;
+    Process_Control_Block PCB;
+    Page_Table page_table;
+};
 class Process_Manager{
     public:
     int Number_of_Process{-1};
-    int *Completion_Time_Array{nullptr};
-    Static_Information *Information{nullptr};
-    Process_Control_Block *PCB{nullptr};
-    Page_Table *page_table{nullptr};
+    int *Completion_Time_Array{};
+    Individual_Information *Process_Information{};
 };
 
 #endif
