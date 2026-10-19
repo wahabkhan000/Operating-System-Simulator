@@ -73,12 +73,37 @@ int Frame_Information::get_allocated_frames() const{
 }
 
 void Physical_Memory::set_ram_size(){
-    // As a sample
-    RAM_Size = 64;
+    int size = -1;
+    
+    do{
+        if(size == -1){
+            std::cout<<"Enter the size of RAM: \n";
+        }
+        else{
+            std::cout<<"Invalid Input! Please TRY AGAIN: \n";
+        }
+        std::cin>>size;
+    }while(size % 2 != 0 || size == 0);
+
+    RAM_Size = size;
 }
 void Physical_Memory::set_frame_size(){
-    // As a sample
-    Frame_Size = 2;
+    int size = -1;
+
+    do{
+        if(size == -1){
+            std::cout<<"Enter the size of Frame: \n";
+        }
+        else{
+            std::cout<<"Invalid Input! Please TRY AGAIN: \n";
+        }
+        std::cin>>size;
+    }while(RAM_Size % size != 0 || size == 0);
+
+    Frame_Size = size;
+}
+void Physical_Memory::set_page_size(){
+    Page_Size = Frame_Size;
 }
 void Physical_Memory::set_number_of_frames(){
     Number_of_Frames = RAM_Size/Frame_Size;
