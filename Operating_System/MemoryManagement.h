@@ -74,11 +74,13 @@ class Physical_Memory{
     void set_frame_size();
     void set_number_of_frames();
     void set_page_size();
+    void set_total_memory_used(const int &);
 
     int get_ram_size() const;
     int get_frame_size() const;
     int get_page_size() const;
     int get_number_of_frames() const;
+    int get_total_used_memory() const;
 
 };
 
