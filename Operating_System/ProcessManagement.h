@@ -85,7 +85,6 @@ class Page_Table{
     int get_page_size() const;
     int get_process_size() const;
 };
-
 class Individual_Information{
     public:
     Static_Information Information;
