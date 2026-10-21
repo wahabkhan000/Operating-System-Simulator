@@ -1,4 +1,5 @@
 #include "MemoryManagement.h"
+#include <iostream>
 #include <string>
 #include <utility>
 
@@ -108,6 +109,9 @@ void Physical_Memory::set_page_size(){
 void Physical_Memory::set_number_of_frames(){
     Number_of_Frames = RAM_Size/Frame_Size;
 }
+void Physical_Memory::set_total_memory_used(const int &memory){
+    Total_Used_Memory += memory;
+}
 int Physical_Memory::get_ram_size() const{
     return RAM_Size;
 }
@@ -119,4 +123,7 @@ int Physical_Memory::get_page_size() const{
 }
 int Physical_Memory::get_number_of_frames() const{
     return Frame_Size;
+}
+int Physical_Memory::get_total_used_memory() const{
+    return Total_Used_Memory;
 }
