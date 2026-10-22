@@ -171,6 +171,44 @@ int main(){
     // Arrival Time Sorting
     Arrival_Time_Sorting(&P);
 
-    //
+    // Completion Time Calculation
+    for(int i{1}; i<P.Number_of_Process; i++){
+        if(P.Process_Information[i-1].Information.get_arrival_time() == P.Process_Information[i].Information.get_arrival_time()){
+            P.Completion_Time_Array[i-1] += P.Completion_Time_Array[i];
+        }
+        else if(P.Process_Information[i-1].Information.get_arrival_time() > P.Process_Information[i].Information.get_arrival_time()){
+            int remain_time{};
+            remain_time = P.Completion_Time_Array[i-1] - P.Process_Information[i].Information.get_arrival_time();
+            P.Completion_Time_Array[i-1] += remain_time;
+        }
+    }
+
+
+    // Process Control Block Information
+    for(int i{}; i<P.Number_of_Process; i++){
+
+        // Process State
+        P.Process_Information[i].PCB.set_process_state("NEW");
+
+        // Completion Time
+        P.Process_Information[i].PCB.set_completion_time(P.Completion_Time_Array[i]);
+
+        // Trunaround Time
+        P.Process_Information[i].PCB.set_turnaround_time(P.Completion_Time_Array[i] - P.Process_Information[i].Information.get_arrival_time());
+        
+        // Waiting Time
+        P.Process_Information[i].PCB.set_waiting_time(P.Process_Information[i].PCB.get_turnaround_time() - P.Process_Information[i].Information.get_burst_time());
+        
+        // Response Time
+        int first_CPU = P.Process_Information[i].Information.get_arrival_time();
+
+        if(i != 0){
+            first_CPU = P.Completion_Time_Array[i-1];
+        }
+        P.Process_Information[i].PCB.set_response_time(first_CPU);
+    }
+
+    // Frame Number Assign
+    
     
 }
