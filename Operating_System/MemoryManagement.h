@@ -30,16 +30,16 @@ class Memory_Management_Unit{
 };
 
 class Frame_Manager{
-    int Frame_Number{-1};
+    int Frame_Owner{-1};
     std::string Frame_Status{"Free"};
     std::pair<int,int>Occupancy{-1,-1};
 
     public:
-    void set_frame_number(const int &);
+    void set_frame_owner(const int &);
     void set_frame_status(const std::string &);
     void set_frame_occupancy(const int &,const int &);
 
-    int get_frame_number() const;
+    int get_frame_owner() const;
     std::string get_frame_status() const;
     std::pair<int,int>get_frame_occupancy() const;
 };
@@ -52,7 +52,7 @@ class Frame_Information{
     public:
     void set_total_frame(const int &);
     void set_free_frames(const int &);
-    void set_allocated_frames(const int &);
+    void set_allocated_frames();
 
     int get_total_frame() const;
     int get_free_frames() const;
@@ -68,7 +68,7 @@ class Physical_Memory{
         
 
     public: 
-    bool *Frame_Check = nullptr;
+    bool *Frame_Check{};
         
     void set_ram_size();
     void set_frame_size();
@@ -89,7 +89,7 @@ class MemoryManagement{
     Memory_Management_Unit MMU;
     Physical_Memory Main_Memory;
     Frame_Information frame_information{};
-    Frame_Manager *Frame = nullptr;
+    Frame_Manager *Frame{};
 };
 
 #endif
