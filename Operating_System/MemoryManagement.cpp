@@ -34,8 +34,8 @@ int Memory_Management_Unit::get_demand_bit() const{
     return Demand_Bit;
 }
 
-void Frame_Manager::set_frame_number(const int &num){
-    Frame_Number = num;
+void Frame_Manager::set_frame_owner(const int &num){
+    Frame_Owner = num;
 }
 void Frame_Manager::set_frame_status(const std::string &status){
     Frame_Status = status;
@@ -44,8 +44,8 @@ void Frame_Manager::set_frame_occupancy(const int &page,const int &frame){
     Occupancy.first = page;
     Occupancy.second = frame;
 }
-int Frame_Manager::get_frame_number() const{
-    return Frame_Number;
+int Frame_Manager::get_frame_owner() const{
+    return Frame_Owner;
 }
 std::string Frame_Manager::get_frame_status() const{
     return Frame_Status;
@@ -60,8 +60,8 @@ void Frame_Information::set_total_frame(const int &total){
 void Frame_Information::set_free_frames(const int &free){
     Free_Frames = free;
 }
-void Frame_Information::set_allocated_frames(const int &alloc){
-    Allocated_Frames = alloc;
+void Frame_Information::set_allocated_frames(){
+    Allocated_Frames++;
 }
 int Frame_Information::get_total_frame() const{
     return Total_Frames;
