@@ -209,6 +209,71 @@ int main(){
     }
 
     // Frame Number Assign
-    
-    
+    int frame_count{};
+    // Total Frame Record
+    M.frame_information.set_total_frame(M.Main_Memory.get_number_of_frames());
+
+    // Process Page Table
+    for(int i{}; i<P.Number_of_Process; i++){
+
+        // Process Size
+        P.Process_Information[i].page_table.set_process_size(P.Process_Information[i].Information.get_memory_requirement());
+
+        // Page Size
+        P.Process_Information[i].page_table.set_page_size(M.Main_Memory.get_page_size());
+
+        // Number of Pages
+        P.Process_Information[i].page_table.set_number_of_page(P.Process_Information[i].Information.get_memory_requirement()/P.Process_Information[i].page_table.get_page_size());
+
+        for(int j{}; j<P.Process_Information[i].page_table.get_number_of_pages(); j++){
+            // Random Premission Assignment
+            char Protection_Value[3] = {'R','W','X'};
+
+            // Protection Value
+            P.Process_Information[i].page_table.page_table_entries[j].set_protection(Protection_Value[rand()%3]);
+
+            // Page Number
+            P.Process_Information[i].page_table.page_table_entries[j].set_page_number(j);
+
+            // Accessed Bit
+            P.Process_Information[i].page_table.page_table_entries[j].set_access_bit(0);
+
+            // Valid bit
+            P.Process_Information[i].page_table.page_table_entries[j].set_valid_bit(1);
+
+            // Dirty bit
+            P.Process_Information[i].page_table.page_table_entries[j].set_dirty_bit(0);
+
+            // Validate Frame is free
+            int temp_value = rand()%M.Main_Memory.get_number_of_frames();
+            while(M.Main_Memory.Frame_Check[temp_value] == true){
+                temp_value = rand()%M.Main_Memory.get_number_of_frames();
+            }
+
+            // change Frame Status in record
+            M.Main_Memory.Frame_Check[temp_value] = true;
+
+            M.Frame = new Frame_Manager[M.Main_Memory.get_number_of_frames()];
+
+            // Assign Frame Owner
+            M.Frame[frame_count].set_frame_owner(P.Process_Information[i].Information.get_pid());
+
+            // Frame Status
+            M.Frame[frame_count].set_frame_status("Occupied");
+
+            // Frame Occupancy
+            M.Frame[frame_count].set_frame_occupancy(j,temp_value);
+
+            // Frame Number record in Page Table
+            P.Process_Information[i].page_table.page_table_entries[j].set_frame_number(M.Frame[frame_count].get_frame_occupancy().second);
+
+            // Frame Information Allocated
+            M.frame_information.set_allocated_frames();
+
+            // Frame Count
+            frame_count++;
+
+        }
+    }
+    std::cout<<1;
 }
