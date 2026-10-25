@@ -85,6 +85,7 @@ void Page_Table_Entries::set_dirty_bit(const int &bit){
 
 void Page_Table::set_number_of_page(const int &num){
     Number_of_Pages = num;
+    page_table_entries = new Page_Table_Entries[Number_of_Pages];
 }
 void Page_Table::set_page_size(const int &size){
     Page_Size = size;
